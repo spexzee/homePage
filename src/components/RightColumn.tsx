@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clipboard, CheckCircle, Search,  Trash } from 'lucide-react';
+import { Clipboard, CheckCircle, Search, Trash } from 'lucide-react';
 
 interface Task {
   id: number;
@@ -26,7 +26,7 @@ const RightColumn: React.FC<{ isDarkTheme: boolean }> = ({ isDarkTheme }) => {
   };
 
   const toggleTask = (id: number) => {
-    setTasks(tasks.map(task => 
+    setTasks(tasks.map(task =>
       task.id === id ? { ...task, completed: !task.completed } : task
     ));
   };
@@ -68,27 +68,27 @@ const RightColumn: React.FC<{ isDarkTheme: boolean }> = ({ isDarkTheme }) => {
           </div>
         ))}
       </div>
-      
+
       <div className={`shadow rounded-lg p-4 ${isDarkTheme ? 'bg-gray-700' : 'bg-white'}`}>
         <h2 className={`text-lg font-semibold mb-4 flex items-center justify-between ${isDarkTheme ? 'text-gray-300' : 'text-gray-700'}`}>
           <span className="flex items-center mr-3">
             <Clipboard className="mr-2" size={20} />
-            Tasks 
+            Tasks
           </span>
           <div className="flex space-x-2">
-            <button 
+            <button
               className={`px-2 py-1 text-xs rounded ${filter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
               onClick={() => setFilter('all')}
             >
               All
             </button>
-            <button 
+            <button
               className={`px-2 py-1 text-xs rounded ${filter === 'active' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
               onClick={() => setFilter('active')}
             >
               Active
             </button>
-            <button 
+            <button
               className={`px-2 py-1 text-xs rounded ${filter === 'completed' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
               onClick={() => setFilter('completed')}
             >
@@ -113,6 +113,8 @@ const RightColumn: React.FC<{ isDarkTheme: boolean }> = ({ isDarkTheme }) => {
             type="text"
             placeholder="Add a task..."
             className={`flex-grow px-2 py-1 text-xs border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${isDarkTheme ? 'bg-gray-600 text-gray-300' : 'bg-white text-black'}`}
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
           />
           <button type="submit" className="mt-2 sm:mt-0 sm:ml-2 bg-blue-500 text-white px-2 py-1 rounded">
             Add

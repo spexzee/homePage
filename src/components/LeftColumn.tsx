@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
 import { Calendar, Users, Folder, Image, Building, UserPlus, UserCheck, Plus, CheckCircle } from 'lucide-react';
 import ExpandableCard from './ExpandableCard';
+import useStore from '../store/useStore'; // Import the store
 
 
 const LeftColumn: React.FC<{ isDarkTheme: boolean }> = ({ isDarkTheme }) => {
-  const [followers, setFollowers] = useState([
-    { id: 1, name: 'Sarah Johnson', avatar: 'https://randomuser.me/api/portraits/women/1.jpg' },
-    { id: 2, name: 'Michael Brown', avatar: 'https://randomuser.me/api/portraits/men/2.jpg' },
-    { id: 3, name: 'Emily Davis', avatar: 'https://randomuser.me/api/portraits/women/3.jpg' },
-  ]);
-
-  const [following, setFollowing] = useState([
-    { id: 1, name: 'David Wilson', avatar: 'https://randomuser.me/api/portraits/men/4.jpg' },
-    { id: 2, name: 'Lisa Thompson', avatar: 'https://randomuser.me/api/portraits/women/5.jpg' },
-    { id: 3, name: 'Robert Taylor', avatar: 'https://randomuser.me/api/portraits/men/6.jpg' },
-  ]);
+  const { followers, following } = useStore(); // Access followers, following, addFollower, and addFollowing from the store
 
   const [events, setEvents] = useState<{ title: string; icon: JSX.Element }[]>([]);
   const [projects, setProjects] = useState<{ title: string; icon: JSX.Element }[]>([]);
@@ -66,34 +57,23 @@ const LeftColumn: React.FC<{ isDarkTheme: boolean }> = ({ isDarkTheme }) => {
   };
 
 
-  const addFollowing = (newFollower: { id: number; name: string; avatar: string }) => {
-    setFollowing([...following, newFollower]);
-  };
-
-  const addFollower = (newFollower: { id: number; name: string; avatar: string }) => {
-    setFollowers([...followers, newFollower]);
-  };
-  console.log(addFollower,addFollowing)
-
   return (
     <div className={`w-full lg:w-1/3 space-y-6 ${isDarkTheme ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
-      <ExpandableCard title="Followers" icon={<UserPlus className="mr-2" size={20} />} className={`shadow-lg rounded-lg p-4 ${isDarkTheme ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
-        <ul className="space-y-4 text-sm text-gray-600">
+       <ExpandableCard title="Followers" icon={<UserPlus className="mr-2" size={20} />} className={`shadow-lg rounded-lg p-4 ${isDarkTheme ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
+        <ul className="flex flex-wrap space-x-4 text-sm text-gray-600">
           {followers.map((follower) => (
-            <li key={follower.id} className="flex items-center justify-start">
-              <img src={follower.avatar} alt={follower.name} className="w-8 h-8 rounded-full mr-2" />
-              <span className={`${isDarkTheme ? 'text-white' : 'text-black'}`}>{follower.name}</span>
+            <li key={follower.id} className="flex items-center">
+              <img src={follower.avatar} alt={`Avatar of follower`} className="w-8 h-8 rounded-full" />
             </li>
           ))}
         </ul>
       </ExpandableCard>
 
       <ExpandableCard title="Following" icon={<UserCheck className="mr-2" size={20} />} className={`shadow-lg rounded-lg p-4 ${isDarkTheme ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
-        <ul className="space-y-4 text-sm text-gray-600">
+        <ul className="flex flex-wrap space-x-4 text-sm text-gray-600">
           {following.map((follow) => (
-            <li key={follow.id} className="flex items-center justify-start">
-              <img src={follow.avatar} alt={follow.name} className="w-8 h-8 rounded-full mr-2" />
-              <span className={`${isDarkTheme ? 'text-white' : 'text-black'}`}>{follow.name}</span>
+            <li key={follow.id} className="flex items-center">
+              <img src={follow.avatar} alt={`Avatar of following`} className="w-8 h-8 rounded-full" />
             </li>
           ))}
         </ul>

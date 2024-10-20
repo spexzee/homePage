@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import useStore from './store/useStore'; 
 
 import LeftColumn from './components/LeftColumn';
 import MiddleColumn from './components/MiddleColumn';
@@ -7,11 +7,9 @@ import Navbar from './components/Navbar';
 
 
 function App() {
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-
-  const toggleTheme = () => {
-    setIsDarkTheme(prev => !prev);
-  };
+  // Remove local state and use the store's theme state
+  const isDarkTheme = useStore(state => state.isDarkTheme);
+  const toggleTheme = useStore(state => state.toggleTheme);
 
   return (
     <div className={`min-h-screen ${isDarkTheme ? 'bg-gray-800 text-white' : 'bg-gray-100 text-black'}`}>

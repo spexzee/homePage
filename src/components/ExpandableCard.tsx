@@ -1,4 +1,3 @@
-// src/components/ExpandableCard.tsx
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import React, { useState } from 'react';
 

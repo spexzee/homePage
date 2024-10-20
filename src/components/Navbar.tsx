@@ -13,8 +13,8 @@ const Navbar: React.FC<{ toggleTheme: () => void; isDarkTheme: boolean }> = ({ t
             <Menu size={20} className="text-gray-500" />
           </button>
         </div>
-        {navVisible && ( // Conditional rendering for dropdown
-          <div className="flex flex-col w-full sm:flex-row sm:space-x-4 mt-2"> {/* Dropdown container */}
+        {navVisible && (
+          <div className="flex flex-col w-full sm:flex-row sm:space-x-4 mt-2">
             <nav className="flex flex-col space-y-2 sm:flex-row sm:space-y-0">
               <a href="#" className={`flex items-center ${isDarkTheme ? 'text-white' : 'text-gray-500'} hover:${isDarkTheme ? 'text-gray-300' : 'text-gray-900'}`}>
                 <Home size={20} className="mr-1" />
@@ -37,14 +37,14 @@ const Navbar: React.FC<{ toggleTheme: () => void; isDarkTheme: boolean }> = ({ t
             </div>
           </div>
         )}
-        <div className="hidden sm:flex items-center space-x-4"> {/* Ensure this is visible on desktop */}
-          <div className="flex items-center"> {/* Search input and button for desktop */}
+        <div className="hidden sm:flex items-center space-x-4">
+          <div className="flex items-center">
             <input
               type="text"
               placeholder="Search for contacts and projects"
               className={`border rounded-lg px-4 py-2 w-full max-w-xl ${isDarkTheme ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'}`}
             />
-            <button className="ml-2"> {/* Search button for desktop */}
+            <button className="ml-2">
               <Search className={`${isDarkTheme ? 'text-white' : 'text-gray-500'}`} size={25} />
             </button>
           </div>

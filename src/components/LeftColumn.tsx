@@ -1,25 +1,37 @@
 import React, { useState } from 'react';
 import { Calendar, Users, Folder, Image, Building, UserPlus, UserCheck, Plus, CheckCircle } from 'lucide-react';
 import ExpandableCard from './ExpandableCard';
-import useStore from '../store/useStore'; // Import the store
-
+import useStore from '../store/useStore';
 
 const LeftColumn: React.FC<{ isDarkTheme: boolean }> = ({ isDarkTheme }) => {
-  const { followers, following } = useStore(); // Access followers, following, addFollower, and addFollowing from the store
+  const { followers, following } = useStore();
 
-  const [events, setEvents] = useState<{ title: string; icon: JSX.Element }[]>([]);
-  const [projects, setProjects] = useState<{ title: string; icon: JSX.Element }[]>([]);
-  const [albums, setAlbums] = useState<{ title: string; icon: JSX.Element }[]>([]);
-  const [organizations, setOrganizations] = useState<{ title: string; icon: JSX.Element }[]>([]);
+  const [events, setEvents] = useState<{ title: string; icon: JSX.Element }[]>([
+    { title: 'Meeting with team', icon: <CheckCircle size={16} /> },
+    { title: 'Project deadline', icon: <CheckCircle size={16} /> },
+  ]);
+  const [contacts, setContacts] = useState<{ title: string; icon: JSX.Element }[]>([
+    { title: 'John Doe', icon: <UserPlus size={16} /> },
+    { title: 'Jane Smith', icon: <UserPlus size={16} /> },
+  ]);
+  const [projects, setProjects] = useState<{ title: string; icon: JSX.Element }[]>([
+    { title: 'Website Redesign', icon: <Folder size={16} /> },
+    { title: 'Mobile App Development', icon: <Folder size={16} /> },
+  ]);
+  const [albums, setAlbums] = useState<{ title: string; icon: JSX.Element }[]>([
+    { title: 'Vacation Photos', icon: <Image size={16} /> },
+    { title: 'Family Gathering', icon: <Image size={16} /> },
+  ]);
+  const [organizations, setOrganizations] = useState<{ title: string; icon: JSX.Element }[]>([
+    { title: 'Tech Corp', icon: <Building size={16} /> },
+    { title: 'Creative Agency', icon: <Building size={16} /> },
+  ]);
   
   const [newEvent, setNewEvent] = useState('');
   const [newContact, setNewContact] = useState('');
   const [newProject, setNewProject] = useState('');
   const [newAlbum, setNewAlbum] = useState('');
   const [newOrganization, setNewOrganization] = useState('');
-
-
-  const [contacts, setContacts] = useState<{ title: string; icon: JSX.Element }[]>([]);
 
   const addEvent = () => {
     if (newEvent) {
@@ -55,7 +67,6 @@ const LeftColumn: React.FC<{ isDarkTheme: boolean }> = ({ isDarkTheme }) => {
       setNewOrganization('');
     }
   };
-
 
   return (
     <div className={`w-full lg:w-1/3 space-y-6 ${isDarkTheme ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>

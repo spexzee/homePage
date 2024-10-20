@@ -5,9 +5,7 @@ import MiddleColumn from './components/MiddleColumn';
 import RightColumn from './components/RightColumn';
 import Navbar from './components/Navbar';
 
-
 function App() {
-  // Remove local state and use the store's theme state
   const isDarkTheme = useStore(state => state.isDarkTheme);
   const toggleTheme = useStore(state => state.toggleTheme);
 

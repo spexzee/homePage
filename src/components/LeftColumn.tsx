@@ -193,12 +193,6 @@ const LeftColumn: React.FC<{ isDarkTheme: boolean }> = ({ isDarkTheme }) => {
           ))}
         </ul>
       </ExpandableCard>
-
-      <ExpandableCard title="New Section" icon={<Plus className="mr-2" size={20} />} className={`shadow-lg rounded-lg p-4 ${isDarkTheme ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
-        <div className="text-sm text-gray-600">
-          <p>This is a new element added to the LeftColumn component.</p>
-        </div>
-      </ExpandableCard>
     </div>
   );
 };

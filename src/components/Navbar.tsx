@@ -14,8 +14,8 @@ const Navbar: React.FC<{ toggleTheme: () => void; isDarkTheme: boolean }> = ({ t
           </button>
         </div>
         {navVisible && (
-          <div className="flex flex-col w-full sm:flex-row sm:space-x-4 mt-2">
-            <nav className="flex flex-col space-y-2 sm:flex-row sm:space-y-0">
+          <div className={`flex flex-col w-full sm:flex-row sm:space-x-4 mt-2 items-center ${isDarkTheme ? 'bg-gray-700' : 'bg-gray-100'}`}>
+            <nav className="flex flex-row space-x-2 sm:flex-row sm:space-x-0">
               <a href="#" className={`flex items-center ${isDarkTheme ? 'text-white' : 'text-gray-500'} hover:${isDarkTheme ? 'text-gray-300' : 'text-gray-900'}`}>
                 <Home size={20} className="mr-1" />
                 Home
@@ -25,15 +25,23 @@ const Navbar: React.FC<{ toggleTheme: () => void; isDarkTheme: boolean }> = ({ t
                 Explore
               </a>
             </nav>
-            <div className="flex items-center w-full mt-2 sm:mt-0">
+            <div className="flex items-center w-full mt-2 sm:mt-0 justify-center">
               <input
                 type="text"
                 placeholder="Search for contacts and projects"
-                className={`border rounded-lg px-4 py-2 w-full max-w-xl ${isDarkTheme ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'}`}
+                className={`border rounded-lg px-4 py-2 w-full max-w-xl ${isDarkTheme ? 'bg-gray-600 text-white' : 'bg-white text-gray-900'}`}
               />
               <button className="ml-2">
                 <Search className={`${isDarkTheme ? 'text-white' : 'text-gray-500'}`} size={25} />
               </button>
+            </div>
+            <div className="flex items-center mt-2 sm:mt-0 justify-center">
+              <button onClick={toggleTheme} className={`${isDarkTheme ? 'text-white' : 'text-gray-500'} mr-2`}>
+                {isDarkTheme ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+              <Bell className={`${isDarkTheme ? 'text-white' : 'text-gray-500'}`} size={20} />
+              <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="User" className="w-8 h-8 rounded-full ml-2" />
+              <button className={`${isDarkTheme ? 'bg-red-600' : 'bg-red-500'} text-white px-4 py-2 rounded ml-2`}>+ Create</button>
             </div>
           </div>
         )}

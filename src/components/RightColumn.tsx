@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clipboard, CheckCircle, Search, X } from 'lucide-react';
+import { Clipboard, CheckCircle, Search,  Trash } from 'lucide-react';
 
 interface Task {
   id: number;
@@ -71,9 +71,9 @@ const RightColumn: React.FC<{ isDarkTheme: boolean }> = ({ isDarkTheme }) => {
       
       <div className={`shadow rounded-lg p-4 ${isDarkTheme ? 'bg-gray-700' : 'bg-white'}`}>
         <h2 className={`text-lg font-semibold mb-4 flex items-center justify-between ${isDarkTheme ? 'text-gray-300' : 'text-gray-700'}`}>
-          <span className="flex items-center">
+          <span className="flex items-center mr-3">
             <Clipboard className="mr-2" size={20} />
-            Tasks
+            Tasks 
           </span>
           <div className="flex space-x-2">
             <button 
@@ -129,7 +129,7 @@ const RightColumn: React.FC<{ isDarkTheme: boolean }> = ({ isDarkTheme }) => {
                 />
                 <span className={task.completed ? 'line-through' : ''}>{task.text}</span>
               </div>
-              <X
+              <Trash
                 size={16}
                 className="text-red-500 cursor-pointer"
                 onClick={() => deleteTask(task.id)}

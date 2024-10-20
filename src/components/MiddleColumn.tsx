@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Filter, Send, Image, Paperclip } from 'lucide-react';
 import NewsFeedItem from './NewsFeedItem';
+import { samplePosts } from './../../data';
 
 interface MiddleColumnProps {
   isDarkTheme: boolean;
@@ -16,26 +17,23 @@ const MiddleColumn: React.FC<MiddleColumnProps> = ({ isDarkTheme }) => {
     content: string;
     privacy: 'Everyone' | 'Organization Colleagues' | 'Project Colleagues' | 'Specific People' | 'Only Me';
     type: string;
-  }>>([
-    {
-      id: 1,
-      author: "Jane Doe",
-      avatar: "https://randomuser.me/api/portraits/women/65.jpg",
-      organization: "Save the Oceans",
-      content: "We've just launched our new beach cleanup initiative! Join us this weekend.",
-      privacy: "Everyone",
-      type: "Project Update"
-    },
-    {
-      id: 2,
-      author: "John Smith",
-      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      organization: "Education for All",
-      content: "Exciting news! We've reached our fundraising goal for the new school building.",
-      privacy: "Organization Colleagues",
-      type: "Fundraising Update"
+  }>>(samplePosts as Array<{
+    id: number;
+    author: string;
+    avatar: string;
+    organization: string;
+    content: string;
+    privacy: 'Everyone' | 'Organization Colleagues' | 'Project Colleagues' | 'Specific People' | 'Only Me';
+    type: string;
+  }>);
+
+  const postsContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (postsContainerRef.current) {
+      postsContainerRef.current.style.height = `calc(150vh - ${postsContainerRef.current.offsetTop}px)`;
     }
-  ]);
+  }, []);
 
   const handlePostSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,7 +94,7 @@ const MiddleColumn: React.FC<MiddleColumnProps> = ({ isDarkTheme }) => {
           </div>
         </form>
       </div>
-      <div className="space-y-4">
+      <div ref={postsContainerRef} className="space-y-4 overflow-y-auto posts">
         {posts.map((post) => (
           <NewsFeedItem key={post.id} {...post} isDarkTheme={isDarkTheme} />
         ))}
